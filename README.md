@@ -1,7 +1,6 @@
-# Career-Matchmaker
 # CareerMatchmaker
 
-CareerMatchmaker is a simple Django web app that recommends the top 3 career paths based on a user’s skills and interests using a machine learning model.
+CareerMatchmaker is a Django web app that recommends the top 3 career paths based on a user’s skills and interests using a machine learning model.
 
 ## 🚀 Features
 
