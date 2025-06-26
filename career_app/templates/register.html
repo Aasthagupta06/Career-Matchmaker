@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="min-height: 85vh;">
+    <div class="p-4 shadow" style="max-width: 460px; width: 100%; background: #f4f7ff; border-radius: 20px;">
+        <h2 class="text-center fw-bold mb-4" style="color: #7c3aed;">Register</h2>
+
+        <!-- Error/Success Messages -->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
+        <!-- Form -->
+        <form method="POST" action="{% url 'register' %}" autocomplete="on">
+            {% csrf_token %}
+            <div class="mb-3 form-floating">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
+                <label for="name">Full Name</label>
+            </div>
+            <div class="mb-3 form-floating">
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                <label for="email">Email</label>
+            </div>
+            <div class="mb-3 form-floating">
+                <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+                <label for="username">Username</label>
+            </div>
+            <div class="mb-3 form-floating">
+                <input type="password" class="form-control" id="password1" name="password1" placeholder="Password" required>
+                <label for="password1">Password</label>
+            </div>
+            <div class="mb-3 form-floating">
+                <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm Password" required>
+                <label for="password2">Confirm Password</label>
+            </div>
+            <div class="d-grid">
+                <button type="submit" class="btn fw-bold" style="background-color:#7c3aed; color:white; font-size: 1.1rem;">Register</button>
+            </div>
+        </form>
+
+        <div class="text-center mt-3" style="font-weight: 500;">
+            Already have an account?
+            <a href="{% url 'login' %}" style="color: #7c3aed; font-weight: 600;">Login</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

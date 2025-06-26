@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %}Recommendations{% endblock %}
+
+{% block content %}
+<style>
+.recommendation-box {
+    background: linear-gradient(120deg, #f0f3f5, #7cdbeb);
+    background-size: 200% 200%;
+    animation: gradientMove 3s ease-in-out infinite;
+    border-radius: 20px;
+    border-left: 6px solid #7c3aed;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    padding: 2rem;
+    margin-top: 50px;
+}
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+.btn-purple {
+    background-color: #7c3aed;
+    color: white;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 0.5rem 1.2rem;
+    text-decoration: none;
+}
+.btn-purple:hover {
+    background-color: #5b21b6;
+    color: white;
+}
+</style>
+
+<div class="container" style="max-width: 620px;">
+    <div class="recommendation-box">
+        <h2 class="text-center mb-4" style="color: #7c3aed; font-weight: 800;">Your Career Recommendations</h2>
+
+        {% if career_info %}
+            <ul class="mb-4">
+                {% for career, description in career_info %}
+                <li class="mb-3">
+                    <strong style="color: #4b2996;">{{ career }}</strong><br>
+                    <small style="color: #333;">{{ description }}</small>
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="text-center text-danger mb-4">No suitable career found based on your input.</p>
+        {% endif %}
+
+        <div class="text-center mt-3">
+            <p style="color: #2288fa; font-weight: 600;">Want to update or retake the survey?</p>
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <a href="{% url 'survey' %}" class="btn btn-outline-primary">Update Preferences</a>
+                <a href="{% url 'retake_survey' %}" class="btn btn-purple">Take a New Survey</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

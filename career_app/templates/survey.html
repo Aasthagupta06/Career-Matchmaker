@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% block title %}Survey{% endblock %}
+{% block content %}
+<style>
+.survey-box {
+    background: linear-gradient(120deg, #f0f3f5, #7cdbeb);
+    background-size: 200% 200%;
+    animation: gradientMove 3s ease-in-out infinite;
+    border-radius: 20px;
+    border-left: 6px solid #7c3aed;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    padding: 2rem;
+    margin-top: 50px;
+}
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+</style>
+
+<div class="container" style="max-width: 620px;">
+    <div class="survey-box">
+        <h2 class="text-center mb-4" style="color: #7c3aed; font-weight: 800;">Career Survey</h2>
+        <form method="POST" autocomplete="off">
+            {% csrf_token %}
+
+            <h5>Skills</h5>
+            <div id="skills-wrapper">
+                {% for skill in initial_skills %}
+                <div class="mb-2 d-flex align-items-center">
+                    <input type="text" name="skills" class="form-control me-2" value="{{ skill }}" placeholder="e.g. Python">
+                    {% if not forloop.first %}
+                    <button type="button" class="btn btn-danger btn-sm remove-skill">Remove</button>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+            <button type="button" class="btn btn-outline-primary btn-sm mb-3" id="add-skill">+ Add Skill</button>
+
+            <h5>Interests</h5>
+            <div id="interests-wrapper">
+                {% for interest in initial_interests %}
+                <div class="mb-2 d-flex align-items-center">
+                    <input type="text" name="interests" class="form-control me-2" value="{{ interest }}" placeholder="e.g. AI">
+                    {% if not forloop.first %}
+                    <button type="button" class="btn btn-danger btn-sm remove-interest">Remove</button>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+            <button type="button" class="btn btn-outline-primary btn-sm mb-3" id="add-interest">+ Add Interest</button>
+
+            <button type="submit" class="btn btn-lg btn-primary w-100">Submit Survey</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const skillWrapper = document.getElementById("skills-wrapper");
+    document.getElementById("add-skill").addEventListener("click", function() {
+        skillWrapper.insertAdjacentHTML("beforeend", `
+            <div class="mb-2 d-flex align-items-center">
+                <input type="text" name="skills" class="form-control me-2" placeholder="e.g. Python">
+                <button type="button" class="btn btn-danger btn-sm remove-skill">Remove</button>
+            </div>
+        `);
+    });
+
+    skillWrapper.addEventListener("click", function(e) {
+        if (e.target.classList.contains("remove-skill")) {
+            e.target.parentElement.remove();
+        }
+    });
+
+    const interestWrapper = document.getElementById("interests-wrapper");
+    document.getElementById("add-interest").addEventListener("click", function() {
+        interestWrapper.insertAdjacentHTML("beforeend", `
+            <div class="mb-2 d-flex align-items-center">
+                <input type="text" name="interests" class="form-control me-2" placeholder="e.g. AI">
+                <button type="button" class="btn btn-danger btn-sm remove-interest">Remove</button>
+            </div>
+        `);
+    });
+
+    interestWrapper.addEventListener("click", function(e) {
+        if (e.target.classList.contains("remove-interest")) {
+            e.target.parentElement.remove();
+        }
+    });
+});
+</script>
+{% endblock %}

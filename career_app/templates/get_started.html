@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="login-animated-box p-4 text-white" style="width: 100%; max-width: 400px; border-radius: 18px; box-shadow: 0 0 30px rgba(0,0,0,0.15); position:relative; overflow:hidden;">
+        <!-- Animated background layers -->
+        <div class="animated-bg"></div>
+        <div class="animated-bg2"></div>
+        <div class="animated-bg3"></div>
+        <div class="animated-bg4"></div>
+        <div class="animated-bg5"></div>
+        <div class="animated-bg6"></div>
+        <div style="position:relative; z-index:2;">
+            <h2 class="text-center fw-bold mb-4">Login</h2>
+            <form method="POST" autocomplete="on">
+                {% csrf_token %}
+                <div class="mb-4 floating-label-group">
+                    <input type="text" id="username" name="username" class="form-control floating-input" placeholder=" " required>
+                    <label for="username" class="floating-label">Username</label>
+                </div>
+                <div class="mb-4 floating-label-group">
+                    <input type="password" id="password" name="password" class="form-control floating-input" placeholder=" " required>
+                    <label for="password" class="floating-label">Password</label>
+                </div>
+                <div class="d-grid mb-2">
+                    <button type="submit" class="btn" style="background:#7c3aed; color:white; font-weight:600; font-size:1.1rem;">Login Now</button>
+                </div>
+            </form>
+            <div class="text-center mt-3" style="color:#232323; font-weight:600; font-size:1.05rem;">
+                Not a member?
+                <a href="{% url 'register' %}" class="fw-semibold text-decoration-none" style="color:#7c3aed;">Signup Now</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+/* Animated, vibrant, multi-color gradient backgrounds for login box */
+.login-animated-box {
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(18px);
+    border: 1.5px solid rgba(255,255,255,0.15);
+    position: relative;
+    overflow: hidden;
+}
+.animated-bg, .animated-bg2, .animated-bg3, .animated-bg4, .animated-bg5, .animated-bg6 {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    border-radius: 50%;
+    opacity: 0.55;
+    filter: blur(32px);
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+.animated-bg {
+    width: 200px; height: 200px;
+    left: -60px; top: -60px;
+    background: radial-gradient(circle at 30% 30%, #a6f0ff 0%, #8A70FF 100%);
+    animation-name: move1;
+    animation-duration: 8s;
+}
+.animated-bg2 {
+    width: 160px; height: 160px;
+    right: -40px; bottom: -40px;
+    background: radial-gradient(circle at 70% 70%, #ffecd2 0%, #43cea2 100%);
+    animation-name: move2;
+    animation-duration: 9s;
+}
+.animated-bg3 {
+    width: 120px; height: 120px;
+    left: 60px; bottom: -30px;
+    background: radial-gradient(circle at 50% 80%, #fcb6f6 0%, #8fd3f4 100%);
+    animation-name: move3;
+    animation-duration: 7.5s;
+}
+.animated-bg4 {
+    width: 80px; height: 80px;
+    left: 80px; top: 30px;
+    background: radial-gradient(circle at 60% 40%, #ffe082 0%, #ff6e40 100%);
+    animation-name: move4;
+    animation-duration: 10s;
+}
+.animated-bg5 {
+    width: 100px; height: 100px;
+    right: 60px; top: 60px;
+    background: radial-gradient(circle at 50% 50%, #81ecec 0%, #00b894 100%);
+    animation-name: move5;
+    animation-duration: 8.5s;
+}
+.animated-bg6 {
+    width: 70px; height: 70px;
+    left: 120px; bottom: 50px;
+    background: radial-gradient(circle at 60% 60%, #fceabb 0%, #f8b500 100%);
+    animation-name: move6;
+    animation-duration: 11s;
+}
+@keyframes move1 {
+    0%, 100% { left: -60px; top: -60px; }
+    50% { left: 40px; top: -30px; }
+}
+@keyframes move2 {
+    0%, 100% { right: -40px; bottom: -40px; }
+    50% { right: 30px; bottom: 30px; }
+}
+@keyframes move3 {
+    0%, 100% { left: 60px; bottom: -30px; }
+    50% { left: 100px; bottom: 20px; }
+}
+@keyframes move4 {
+    0%, 100% { left: 80px; top: 30px; }
+    50% { left: 120px; top: 60px; }
+}
+@keyframes move5 {
+    0%, 100% { right: 60px; top: 60px; }
+    50% { right: 100px; top: 100px; }
+}
+@keyframes move6 {
+    0%, 100% { left: 120px; bottom: 50px; }
+    50% { left: 80px; bottom: 80px; }
+}
+
+/* Floating label effect */
+.floating-label-group {
+    position: relative;
+}
+.floating-input {
+    background: transparent !important;
+    border: none;
+    border-bottom: 2px solid #7c3aed;
+    border-radius: 0;
+    color: #232323;
+    font-size: 1.1rem;
+    padding: 10px 10px 10px 0;
+    width: 100%;
+    transition: border-color 0.3s, color 0.3s;
+    box-shadow: none !important;
+    outline: none !important;
+}
+.floating-input:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border-bottom: 2.5px solid #232323;
+    color: #232323;
+    background: rgba(255,255,255,0.20) !important;
+}
+.floating-input:not(:placeholder-shown) + .floating-label,
+.floating-input:focus + .floating-label {
+    top: -16px;
+    left: 0;
+    font-size: 0.88rem;
+    color: #7c3aed;
+    background: rgba(255,255,255,0.09);
+    padding: 0 4px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+.floating-label {
+    position: absolute;
+    pointer-events: none;
+    left: 0;
+    top: 10px;
+    transition: 0.2s ease all;
+    color: #b3d8fd;
+    font-size: 1.08rem;
+    font-weight: 500;
+    padding-left: 2px;
+    background: transparent;
+}
+
+.form-control.floating-input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 100px rgba(255,255,255,0.18) inset !important;
+    -webkit-text-fill-color: #232323 !important;
+}
+
+
+</style>
+{% endblock %}

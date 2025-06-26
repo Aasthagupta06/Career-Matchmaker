@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Survey Required</title>
+</head>
+<body>
+    
+
+    {% extends 'base.html' %}
+{% block title %}No Survey Found{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-center">
+    <div class="card p-4 position-relative" style="max-width: 500px; background-color: rgba(255, 255, 255, 0.9);">
+        <h2 class="text-center">Survey Missing</h2>
+        <p class="text-center">It seems you haven't submitted your survey yet. Please fill out the survey to get recommendations.</p>
+        <div class="text-center mt-3">
+            <a href="{% url 'survey' %}" class="btn btn-primary">Take Survey</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+</body>
+</html>

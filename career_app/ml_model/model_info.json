@@ -1,0 +1,13 @@
+{
+    "model_type": "SVC",
+    "vectorizer": "TfidfVectorizer",
+    "label_encoder": "LabelEncoder",
+    "trained_on": "Skills and Interests TF-IDF features",
+    "tuned": true,
+    "accuracy": 0.9778,
+    "best_params": {
+        "C": 1,
+        "kernel": "rbf",
+        "gamma": "scale"
+    }
+}

@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Career Matchmaker{% endblock %}
+
+{% block extra_head %}
+<style>
+    .hero-section {
+        min-height: 90vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .hero-title {
+        font-size: 3.5rem;
+        font-weight: 900;
+        background: linear-gradient(135deg, #fff 0%, #e2e8f0 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+        animation: slideInLeft 1s ease-out;
+    }
+
+    .hero-subtitle {
+        font-size: 1.3rem;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 2rem;
+        line-height: 1.6;
+        animation: slideInLeft 1s ease-out 0.2s both;
+    }
+
+    .hero-buttons {
+        animation: slideInLeft 1s ease-out 0.4s both;
+    }
+
+    .hero-btn {
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+        font-weight: 700;
+        border-radius: 50px;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        margin-right: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .hero-btn-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+    }
+
+    .hero-btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+        color: white;
+    }
+
+    .hero-animation {
+        animation: slideInRight 1s ease-out 0.6s both;
+        position: relative;
+    }
+
+    @keyframes slideInLeft {
+        from {
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes slideInRight {
+        from {
+            opacity: 0;
+            transform: translateX(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .hero-title {
+            font-size: 2.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+        }
+
+        .hero-btn {
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 hero-content">
+                <h1 class="hero-title">
+                    Discover Your Perfect Career Path
+                </h1>
+                <p class="hero-subtitle">
+                    Take our AI-powered survey to match your unique skills, interests, and personality with the perfect career opportunities. Start your journey to professional fulfillment today!
+                </p>
+                <div class="hero-buttons">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'dashboard' %}" class="hero-btn hero-btn-primary">
+                            <i class="fas fa-rocket"></i>
+                            Get Started
+                        </a>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="hero-btn hero-btn-primary">
+                            <i class="fas fa-sign-in-alt"></i>
+                            Get Started
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-lg-6 hero-animation">
+                <lottie-player
+                    src="https://cdn.lottielab.com/l/EkmjfATcCJAP5g.json"
+                    background="transparent"
+                    speed="1"
+                    loop
+                    autoplay
+                    style="width: 100%; max-width: 500px; height: 400px;">
+                </lottie-player>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
