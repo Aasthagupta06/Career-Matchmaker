@@ -80,16 +80,7 @@ WSGI_APPLICATION = 'career_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'career_db',
-#         'USER': 'career_user',
-#         'PASSWORD': 'Saimandir',  # use the password you set in pgAdmin
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#     }
-# }
+
 
 import os
 
@@ -98,7 +89,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.environ.get('DJANGO_DB_NAME', 'career_db'),
         'USER': os.environ.get('DJANGO_DB_USER', 'career_user'),
-        'PASSWORD': os.environ.get('DJANGO_DB_PASSWORD', 'Saimandir'),
+         'PASSWORD': os.environ.get('DJANGO_DB_PASSWORD', ''),
         'HOST': os.environ.get('DJANGO_DB_HOST', 'localhost'),
         'PORT': os.environ.get('DJANGO_DB_PORT', '5432'),
     }
